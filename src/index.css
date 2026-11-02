@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+/* Tokens de color: claro por defecto, oscuro según el sistema. */
+@theme {
+  --color-page: #f9f9f7;
+  --color-surface: #fcfcfb;
+  --color-surface-2: #f0efec;
+  --color-surface-3: #e7e6e1;
+  --color-ink: #0b0b0b;
+  --color-ink-2: #52514e;
+  --color-muted: #898781;
+  --color-line: #e1e0d9;
+  --color-line-strong: #c3c2b7;
+  --color-ring: rgba(11, 11, 11, 0.1);
+  --color-accent: #2a78d6;
+  --color-good: #0ca30c;
+  --color-good-text: #006300;
+  --color-critical: #d03b3b;
+  --font-sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --color-page: #0d0d0d;
+    --color-surface: #1a1a19;
+    --color-surface-2: #232321;
+    --color-surface-3: #2c2c2a;
+    --color-ink: #f0efec;
+    --color-ink-2: #c3c2b7;
+    --color-line: #2c2c2a;
+    --color-line-strong: #383835;
+    --color-ring: rgba(255, 255, 255, 0.1);
+    --color-accent: #3987e5;
+    --color-good-text: #0ca30c;
+    --color-critical: #e66767;
+  }
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  @apply bg-page text-ink font-sans antialiased;
+  overscroll-behavior: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:not(:disabled) {
+  cursor: pointer;
+}

@@ -1,0 +1,29 @@
+[package]
+name = "focus-app"
+version = "0.1.0"
+description = "Calendario de hábitos con rachas y métricas, sincronizado con Postgres (Neon)"
+edition = "2021"
+
+[lib]
+name = "focus_app_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+chrono = { version = "0.4", features = ["serde"] }
+thiserror = "2"
+tokio = { version = "1", features = ["sync", "time", "macros"] }
+# rustls + raíces webpki: TLS sin OpenSSL ni almacén de certificados del sistema (clave para Android).
+sqlx = { version = "0.8", default-features = false, features = [
+    "postgres", "runtime-tokio", "tls-rustls-ring-webpki", "chrono", "macros", "migrate",
+] }
+
+[profile.release]
+lto = true
+codegen-units = 1
+strip = true
